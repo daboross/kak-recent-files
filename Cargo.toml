@@ -1,0 +1,14 @@
+[package]
+name = "krf"
+version = "0.1.0"
+authors = ["David Ross <daboross@daboross.net>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+structopt = "0.2"
+dirs = "2"
+memchr = "2"
+ignore = "0.4"
+
