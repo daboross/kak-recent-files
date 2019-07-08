@@ -112,7 +112,7 @@ fn load_session_storage<'a>(
 ) -> Result<Cow<'a, str>> {
     let res = match state {
         StorageState::Temp => match &ops.temp_storage {
-            Some(storage) if !storage.is_empty() => Cow::from(&**storage),
+            Some(storage) if !storage.trim().is_empty() => Cow::from(&**storage),
             _ => {
                 // no initial population for temp storage.
                 // let buf = initial_session_population()?;
@@ -126,7 +126,7 @@ fn load_session_storage<'a>(
         StorageState::Permanent(session_file_path) => {
             if session_file_path.exists() {
                 let buf = fs::read_to_string(&session_file_path)?;
-                if !buf.is_empty() {
+                if !buf.trim().is_empty() {
                     return Ok(Cow::from(buf));
                 }
             }
