@@ -17,9 +17,7 @@ enum Command {
     #[structopt(name = "open-initial-file")]
     OpenInitialFile,
     #[structopt(name = "opened-file")]
-    OpenedFile {
-        file: String,
-    },
+    OpenedFile { file: String },
     #[structopt(name = "open-menu")]
     OpenMenu {
         #[structopt(long = "from")]
@@ -28,9 +26,7 @@ enum Command {
         cmd: String,
     },
     #[structopt(name = "remove-file")]
-    RemoveFile {
-        file: String,
-    },
+    RemoveFile { file: String },
     #[structopt(name = "reset")]
     Reset,
 }
