@@ -15,7 +15,7 @@ use structopt::StructOpt;
 pub mod util;
 
 const ME: &str = "kak-recent-files";
-const MAX_INITIAL_LOAD: u32 = 500;
+const MAX_INITIAL_LOAD: u32 = 10000;
 
 #[derive(StructOpt, Debug)]
 pub struct CommonOps {
