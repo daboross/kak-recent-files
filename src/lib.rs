@@ -293,13 +293,16 @@ pub fn most_recent_file_if_exists(ops: &CommonOps) -> Result<Option<String>> {
 
     let mut file = BufReader::new(File::open(&session_file_path)?);
     let mut path_to_open = String::new();
-    let num_read = file.read_line(&mut path_to_open)?;
+    loop {
+        path_to_open.clear();
+        let num_read = file.read_line(&mut path_to_open)?;
 
-    let path_to_open = path_to_open.trim_end_matches(&['\r', '\n'][..]);
+        let path_to_open = path_to_open.trim_end_matches(&['\r', '\n'][..]);
 
-    if num_read == 0 || path_to_open.is_empty() {
-        Ok(None)
-    } else {
-        Ok(Some(path_to_open.to_owned()))
+        if num_read == 0 || path_to_open.is_empty() {
+            break Ok(None);
+        } else if Path::new(path_to_open).exists() {
+            break Ok(Some(path_to_open.to_owned()));
+        }
     }
 }
